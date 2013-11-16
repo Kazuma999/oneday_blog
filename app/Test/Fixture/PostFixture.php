@@ -38,8 +38,8 @@ class PostFixture extends CakeTestFixture {
 			'title' => 'Lorem ipsum dolor sit amet',
 			'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
 			'user_id' => 1,
-			'created' => '2013-11-16 01:35:59',
-			'modified' => '2013-11-16 01:35:59'
+			'created' => '2013-11-16 16:59:09',
+			'modified' => '2013-11-16 16:59:09'
 		),
 	);
 

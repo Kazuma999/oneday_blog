@@ -26,7 +26,8 @@ class PostsController extends AppController {
 		// Postの場合、Category, User情報まで取ってくる
 		$this->Post->recursive = 0;
 		// ページャ付き記事一覧を、$postsという変数名としてViewに渡す
-		$this->set('posts', $this->Paginator->paginate());
+		$posts = $this->Paginator->paginate(); //page情報あり
+		$this->set('posts', $posts);
 	}
 
 /**
@@ -42,13 +43,19 @@ class PostsController extends AppController {
 		}
 		// Modelクラスのfindメソッドを呼ぶときのオプション
 		// 「Postのプライマリーキー(サロゲートキー)が$idと一致する」という条件を表す
-		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
 		// find: Modelクラスで実際にDBからレコードを取得するときのメソッド
 		// 第一引数はどんな形で取ってくるか指定する引数で、主に以下のものがある
 		// - first: 条件に該当する最初にヒットしたレコードを返す (単数)
 		// - all: 条件に該当するレコード全てを返す (複数)
 		// - list: idとnameだけを返す (複数)
-		$this->set('post', $this->Post->find('first', $options));
+		// recursive = 1
+		// hasManyも呼ぶ ()
+		$post = $this->Post->find('first', array(
+			'conditions' => array(
+				'Post.' . $this->Post->primaryKey => $id
+			)
+		));
+		$this->set('post', $post);
 	}
 
 /**
@@ -107,8 +114,11 @@ class PostsController extends AppController {
 			}
 		} else {
 			// 初回表示であれば、$idに一致するレコードを取得し、$this->request->dataに格納
-			$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
-			$this->request->data = $this->Post->find('first', $options);
+			$this->request->data = $this->Post->find('first', array(
+				'conditions' => array(
+					'Post.' . $this->Post->primaryKey => $id
+				)
+			));
 		}
 		$categories = $this->Post->Category->find('list');
 		$users = $this->Post->User->find('list');

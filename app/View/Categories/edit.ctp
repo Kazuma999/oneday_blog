@@ -1,5 +1,5 @@
 <div class="categories form">
-<?php echo $this->Form->create('Category'); ?>
+	<?php echo $this->Form->create('Category'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Category'); ?></legend>
 	<?php
